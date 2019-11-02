@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,12 +50,9 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
             layoutView = itemView;
-
             cardView = itemView.findViewById(R.id.main_screen_cardview);
             imageView = itemView.findViewById(R.id.main_screen_imageview);
-
             cardView.setOnClickListener(this);
-
         }
 
         @Override
