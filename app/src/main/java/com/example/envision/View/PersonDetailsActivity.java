@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.envision.Adapter.PersonDetailRecyclerView;
+import com.example.envision.BankruptPredictorActivity;
 import com.example.envision.R;
 
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class PersonDetailsActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if( v == cardView){
-
+            startActivity(new Intent(PersonDetailsActivity.this, BankruptPredictorActivity.class));
         }
     }
 }
