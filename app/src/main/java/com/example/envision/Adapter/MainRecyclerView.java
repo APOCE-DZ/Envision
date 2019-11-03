@@ -7,13 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.envision.View.BankruptPredictorActivity;
 import com.example.envision.View.PatientListActivity;
 import com.example.envision.R;
 import com.example.envision.View.CustomerListPage;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -44,7 +51,7 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
         if(position == 0)
             holder.imageView.setImageResource(R.drawable.money);
         if(position == 1)
-            holder.imageView.setImageResource(R.drawable.male);
+            holder.imageView.setImageResource(R.drawable.cancer);
         if (position == 2)
             holder.imageView.setImageResource(R.drawable.loan);
 
@@ -83,9 +90,6 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
                 if(getAdapterPosition() == 2)
                     invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), BankruptPredictorActivity.class));
 
-                if(getAdapterPosition() == 3)
-                    invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), BankruptPredictorActivity.class));
-                
             }
         }
     }
