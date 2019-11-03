@@ -39,7 +39,10 @@ public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerV
     @Override
     public void onBindViewHolder(@NonNull ListPageViewHolder holder, int position) {
         holder.textView.setText(list.get(position));
-        holder.imageView.setImageResource(R.drawable.male);
+        if(position % 2 == 0)
+            holder.imageView.setImageResource(R.drawable.male);
+        else
+            holder.imageView.setImageResource(R.drawable.female);
     }
 
     @Override

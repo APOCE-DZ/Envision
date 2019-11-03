@@ -35,18 +35,36 @@
                 android:padding="3dp"
                 >
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/male"
-                    app:civ_border_width="2dp"
-                    app:civ_border_color="#FF000000"
-                    android:layout_margin="10dp"
-                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
 
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/male"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"
+                        android:layout_margin="12dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="25dp"
+                        android:text="Name"
+                        android:layout_marginTop="25dp"
+                        android:textStyle="bold"
+                        android:id="@+id/activity_person_detal_name_tv"
+                        />
+
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -54,18 +72,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="5dp"
-                    android:layout_margin="5dp"
                     >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="Name"
-                        android:textStyle="bold"
-                        android:id="@+id/activity_person_detal_name_tv"
-                        />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -123,7 +130,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="School : "
+                            android:text="School: "
                             android:textStyle="bold"
                             android:layout_weight="1"
                             android:textSize="18dp"
@@ -134,6 +141,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textStyle="bold"
+                            android:text="School"
                             android:id="@+id/activity_person_detail_school_tv"
                             android:textSize="18dp"
                             />

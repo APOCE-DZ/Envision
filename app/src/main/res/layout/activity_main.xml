@@ -6,7 +6,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.MainActivity">
+    tools:context=".View.MainActivity"
+    android:background="@drawable/gradient3"
+    >
 
 <LinearLayout
     android:layout_width="match_parent"
