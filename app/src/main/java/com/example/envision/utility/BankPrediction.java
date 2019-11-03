@@ -1,3 +1,5 @@
+package com.example.envision.utility;
+
 class BankPrediction {
     public static int getGenderValue(String gender) {
         if (gender.equalsIgnoreCase("male")) {
@@ -18,7 +20,7 @@ class BankPrediction {
     public static int getMaritalStatusValue(String marital) {
         if(marital.equalsIgnoreCase("married")){
             return 1;
-        } else if(edu.equalsIgnoreCase("single")){
+        } else if(marital.equalsIgnoreCase("single")){
             return 2;
         } else {
             return 3;

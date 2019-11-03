@@ -33,12 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardViews.add(R.mipmap.ic_launcher);
         cardViews.add(R.mipmap.ic_launcher);
         cardViews.add(R.mipmap.ic_launcher);
-        cardViews.add(R.mipmap.ic_launcher);
-        cardViews.add(R.mipmap.ic_launcher);
-        cardViews.add(R.mipmap.ic_launcher);
-        cardViews.add(R.mipmap.ic_launcher);
-        cardViews.add(R.mipmap.ic_launcher);
-        cardViews.add(R.mipmap.ic_launcher);
     }
 
     public void initRecycler(){

@@ -1,4 +1,8 @@
-class Patient{
+package com.example.envision.brestcancer.model;
+
+import java.io.Serializable;
+
+public class Patient implements Serializable {
         long id;
         String name;
         String blood_group;
@@ -32,7 +36,7 @@ class Patient{
         double concave_points_worst;
         double symmetry_worst;
         double fractal_dimension_worst;
-        int diagnosis
+        int diagnosis;
 
         public long getId() {
                 return id;
@@ -114,13 +118,6 @@ class Patient{
                 this.concavity_mean = concavity_mean;
         }
 
-        public double getConcave() {
-                return concave;
-        }
-
-        public void setConcave(double concave) {
-                this.concave = concave;
-        }
 
         public double getSymmetry_worst() {
                 return symmetry_worst;
@@ -289,5 +286,30 @@ class Patient{
         public void setConcavity_se(double concavity_se) {
                 this.concavity_se = concavity_se;
         }
+
+        public double getConcave_points_mean() {
+                return concave_points_mean;
+        }
+
+        public void setConcave_points_mean(double concave_points_mean) {
+                this.concave_points_mean = concave_points_mean;
+        }
+
+        public double getConcave_points_se() {
+                return concave_points_se;
+        }
+
+        public void setConcave_points_se(double concave_points_se) {
+                this.concave_points_se = concave_points_se;
+        }
+
+        public double getConcave_points_worst() {
+                return concave_points_worst;
+        }
+
+        public void setConcave_points_worst(double concave_points_worst) {
+                this.concave_points_worst = concave_points_worst;
+        }
+
 
 }

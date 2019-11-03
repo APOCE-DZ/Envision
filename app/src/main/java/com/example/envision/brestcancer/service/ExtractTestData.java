@@ -1,13 +1,37 @@
-class ExtractTestData{
-    static String breastCancertestData = "BreastCancertestingset.csv";
-    AssetManager asset = getAssets();
-    public static ArrayList<Patient> extractData(){
+package com.example.envision.brestcancer.service;
+
+import android.content.Context;
+import android.content.res.AssetManager;
+
+import com.example.envision.brestcancer.model.Patient;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ExtractTestData{
+    String breastCancertestData = "BreastCancertestingset.csv";
+
+    AssetManager asset;
+    Context context;
+
+    public ExtractTestData(Context context){
+        this.context = context;
+        asset = context.getAssets();
+    }
+
+    public  ArrayList<Patient> extractData(){
+
+        ArrayList<Patient> arrayOfPatient = new ArrayList<Patient>();
         try {
-        csvReader = new BufferedReader(new InputStreamReader(asset.open(breastCancertestData), Charset.forName("UTF-8")));
+            BufferedReader csvReader = new BufferedReader(new InputStreamReader(asset.open(breastCancertestData), Charset.forName("UTF-8")));
             String row = "";
-            csvReader.readLine()
-                    int i=0;
-            ArrayList<Patient> arrayOfPatient = new ArrayList<Patient>();
+            csvReader.readLine();
+            int i=0;
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
                 Patient patient=new Patient();
@@ -46,7 +70,7 @@ class ExtractTestData{
                 patient.setSymmetry_worst(Double.parseDouble(tuple.get(31)));
                 patient.setFractal_dimension_worst(Double.parseDouble(tuple.get(32)));
                 patient.setDiagnosis(Integer.parseInt(tuple.get(33)));
-                arrayOfPatient.add(patient)
+                arrayOfPatient.add(patient);
                 i++;
                 if(i>20){
                     break;

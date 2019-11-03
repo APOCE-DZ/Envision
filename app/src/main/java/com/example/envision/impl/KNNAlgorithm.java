@@ -1,10 +1,14 @@
-package com.ml.machinelearning;
+package com.example.envision.impl;
+
+import android.content.Context;
+import android.content.res.AssetManager;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,6 +23,11 @@ public class KNNAlgorithm {
     static String creditCardData = "creditcarddetails.csv";
     static String bankruptcyData = "bankrupcy.csv";
     static String breastCancerData = "BreastCancertrainingset.csv";
+
+    Context context;
+    public KNNAlgorithm(Context context){
+        this.context = context;
+    }
 
     public static HashMap<ArrayList<String>, Double> customSort(HashMap<ArrayList<String>, Double> hm) {
         List<Map.Entry<ArrayList<String>, Double>> currentRows = new LinkedList<Map.Entry<ArrayList<String>, Double>>(hm.entrySet());
@@ -35,12 +44,12 @@ public class KNNAlgorithm {
         return sortedrows;
     }
 
-    public static boolean getPrediction(ArrayList<Double> testData, int dataset) {
+    public  boolean getPrediction(ArrayList<Double> testData, int dataset) {
         BufferedReader csvReader = null;
         int resCount = 0;
         HashMap<ArrayList<String>, Double> dict = new HashMap<ArrayList<String>, Double>();
         String trainingData = "";
-        AssetManager asset = getAssets();
+        AssetManager asset = context.getAssets();
         if (dataset == 1) {
             trainingData = creditCardData;
         } else if (dataset == 2) {
@@ -51,7 +60,7 @@ public class KNNAlgorithm {
         try {
             csvReader = new BufferedReader(new InputStreamReader(asset.open(trainingData), Charset.forName("UTF-8")));
             String row = "";
-            csvReader.readLine()
+            csvReader.readLine();
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
                 ArrayList<String> tuple = new ArrayList(Arrays.asList(data));

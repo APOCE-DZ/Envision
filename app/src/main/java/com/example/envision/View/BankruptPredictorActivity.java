@@ -1,14 +1,13 @@
-package com.example.envision;
+package com.example.envision.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
-import android.media.Rating;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
-import android.widget.Toast;
+
+import com.example.envision.R;
 
 import java.util.ArrayList;
 
@@ -44,8 +43,6 @@ public class BankruptPredictorActivity extends AppCompatActivity implements Rati
                    else
                        valuesList.set(i,10);
                }
-
-                Toast.makeText(BankruptPredictorActivity.this, "" + valuesList.toString(), Toast.LENGTH_SHORT).show();
 
                 int returnValue = 0;
                 String result;

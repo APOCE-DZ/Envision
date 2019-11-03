@@ -2,16 +2,20 @@ package com.example.envision.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.example.envision.View.BankruptPredictorActivity;
+import com.example.envision.View.PatientListActivity;
 import com.example.envision.R;
 import com.example.envision.View.CustomerListPage;
 
 import java.util.ArrayList;
+
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +41,13 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-        holder.imageView.setImageResource(R.mipmap.ic_launcher);
+        if(position == 0)
+            holder.imageView.setImageResource(R.drawable.money);
+        if(position == 1)
+            holder.imageView.setImageResource(R.drawable.male);
+        if (position == 2)
+            holder.imageView.setImageResource(R.drawable.loan);
+
     }
 
     @Override
@@ -64,8 +74,18 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
         public void onClick(View v) {
 
             if(v == cardView){
-                Toast.makeText(invokingActivity, "" + v.getId(), Toast.LENGTH_SHORT).show();
-                invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), CustomerListPage.class));
+                if(getAdapterPosition() == 0)
+                    invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), CustomerListPage.class));
+
+                if(getAdapterPosition() == 1)
+                    invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), PatientListActivity.class));
+
+                if(getAdapterPosition() == 2)
+                    invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), BankruptPredictorActivity.class));
+
+                if(getAdapterPosition() == 3)
+                    invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), BankruptPredictorActivity.class));
+                
             }
         }
     }
