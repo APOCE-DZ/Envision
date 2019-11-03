@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.envision.R;
 import com.example.envision.View.PersonDetailsActivity;
+import com.example.envision.loandefaulter.model.Customer;
 
 import java.util.ArrayList;
 
@@ -20,12 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerView.ListPageViewHolder>{
 
-    Context context;
-    ArrayList<String> list;
+    private Context context;
+    private ArrayList<Customer> customers;
 
-    public ListPageRecyclerView(Context context, ArrayList<String> list){
+    public ListPageRecyclerView(Context context, ArrayList<Customer> customers){
         this.context = context;
-        this.list = list;
+        this.customers = customers;
     }
 
     @NonNull
@@ -38,7 +39,7 @@ public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull ListPageViewHolder holder, int position) {
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(customers.get(position).getFirstName()+" "+customers.get(position).getLastName());
         if(position % 2 == 0)
             holder.imageView.setImageResource(R.drawable.male);
         else
@@ -47,7 +48,7 @@ public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerV
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return customers.size();
     }
 
 
