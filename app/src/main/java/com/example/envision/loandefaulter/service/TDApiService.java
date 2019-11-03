@@ -151,7 +151,15 @@ public class TDApiService {
                 }
 
             }
-        });
+        }){
+            // Add the API Key to the Authorization header of the API request call.
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", ApiConstants.TD_API_KEY);
+                return params;
+            }
+        };
 
         RequestQueueService.getInstance(context).addToRequestQueue(postRequest.setShouldCache(false));
     }
