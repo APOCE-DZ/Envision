@@ -1,8 +1,9 @@
 package com.example.envision.loandefaulter.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements Serializable {
 
     /*Account Information*/
     private String accountId;

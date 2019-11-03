@@ -1,6 +1,11 @@
 package com.example.envision.loandefaulter.model;
 
-public class Transaction {
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Transaction implements Serializable, Comparable<Transaction> {
 
     private String transactionId;
     private String accountId;
@@ -93,4 +98,16 @@ public class Transaction {
         this.description = description;
     }
 
+    public int compareTo(Transaction transaction) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            Date date1 = sdf.parse(this.dateTime);
+            Date date2 = sdf.parse(transaction.getDateTime());
+            return date1.compareTo(date2);
+        } catch (ParseException e){
+            System.out.println("Error while comparing dates...");
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.envision.utility;
 
-class BankPrediction {
+public class BankPrediction {
     public static int getGenderValue(String gender) {
         if (gender.equalsIgnoreCase("male")) {
             return 1;
@@ -8,7 +8,7 @@ class BankPrediction {
             return 2;
         }
     }
-    public static int getEducationValue(String edu) {
+    public static int getWorkValue(String edu) {
         if(edu.equalsIgnoreCase("fulltime")){
             return 1;
         } else if(edu.equalsIgnoreCase("parttime")){
