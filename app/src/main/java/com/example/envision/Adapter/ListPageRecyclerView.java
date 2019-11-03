@@ -39,7 +39,7 @@ public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerV
     @Override
     public void onBindViewHolder(@NonNull ListPageViewHolder holder, int position) {
         holder.textView.setText(list.get(position));
-        holder.imageView.setImageResource(R.mipmap.ic_launcher);
+        holder.imageView.setImageResource(R.drawable.male);
     }
 
     @Override
