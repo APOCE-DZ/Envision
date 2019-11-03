@@ -7,4 +7,6 @@ public class ApiConstants {
     public static final String TD_API_URL = "https://api.td-davinci.com";
 
     public static final String TD_FETCH_CUSTOMER = "/api/raw-customer-data";
+
+    public static final String TD_FETCH_CUSTOMER_ACCOUNTS = "/api/customers/%s/accounts";
 }

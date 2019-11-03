@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.envision.R;
-import com.example.envision.View.PersonDetailsActivity;
+import com.example.envision.View.CustomerDetailsActivity;
 import com.example.envision.loandefaulter.model.Customer;
 
 import java.util.ArrayList;
@@ -19,26 +18,26 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerView.ListPageViewHolder>{
+public class CustomerListRecyclerView extends RecyclerView.Adapter<CustomerListRecyclerView.CustomerListViewHolder>{
 
     private Context context;
     private ArrayList<Customer> customers;
 
-    public ListPageRecyclerView(Context context, ArrayList<Customer> customers){
+    public CustomerListRecyclerView(Context context, ArrayList<Customer> customers){
         this.context = context;
         this.customers = customers;
     }
 
     @NonNull
     @Override
-    public ListPageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomerListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_page_cardview,parent,false);
-        final ListPageViewHolder listPageViewHolder = new ListPageViewHolder(view);
-        return listPageViewHolder;
+        final CustomerListViewHolder customerListViewHolder = new CustomerListViewHolder(view);
+        return customerListViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListPageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomerListViewHolder holder, int position) {
         holder.textView.setText(customers.get(position).getFirstName()+" "+customers.get(position).getLastName());
         if(position % 2 == 0)
             holder.imageView.setImageResource(R.drawable.male);
@@ -52,13 +51,13 @@ public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerV
     }
 
 
-    public class ListPageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class CustomerListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CardView cardView;
         TextView textView;
         ImageView imageView;
 
-        public ListPageViewHolder(@NonNull View itemView) {
+        public CustomerListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.listpage_textview);
@@ -73,8 +72,10 @@ public class ListPageRecyclerView extends RecyclerView.Adapter<ListPageRecyclerV
         public void onClick(View v) {
 
             if(v == cardView){
-                Toast.makeText(itemView.getContext(), ""+v.getId(), Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context.getApplicationContext(), PersonDetailsActivity.class));
+                //Toast.makeText(itemView.getContext(), ""+v.getId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context.getApplicationContext(), CustomerDetailsActivity.class);
+                intent.putExtra("CUSTOMER", customers.get(getAdapterPosition()));
+                context.startActivity(intent);
             }
         }
     }

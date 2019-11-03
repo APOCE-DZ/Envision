@@ -1,10 +1,11 @@
 package com.example.envision.loandefaulter.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Serializable {
 
     /*Personal Information*/
     private String customerId;
@@ -19,7 +20,7 @@ public class Customer {
     private double totalIncome;
 
     /*Accounts*/
-    private HashMap<String, List<Account>> accounts = new HashMap<>();
+    private HashMap<String, ArrayList<Account>> accounts = new HashMap<>();
 
     /*Bill Payments*/
     private ArrayList<Transaction> billPayments;
@@ -105,11 +106,11 @@ public class Customer {
         this.totalIncome = totalIncome;
     }
 
-    public HashMap<String, List<Account>> getAccounts() {
+    public HashMap<String, ArrayList<Account>> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(HashMap<String, List<Account>> accounts) {
+    public void setAccounts(HashMap<String, ArrayList<Account>> accounts) {
         this.accounts = accounts;
     }
 

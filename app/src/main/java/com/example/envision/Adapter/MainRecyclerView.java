@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.envision.R;
-import com.example.envision.View.ListPage;
+import com.example.envision.View.CustomerListPage;
 
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
@@ -65,7 +65,7 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
 
             if(v == cardView){
                 Toast.makeText(invokingActivity, "" + v.getId(), Toast.LENGTH_SHORT).show();
-                invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), ListPage.class));
+                invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), CustomerListPage.class));
             }
         }
     }

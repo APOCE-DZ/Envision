@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.PersonDetailsActivity" />
-        <activity android:name=".View.ListPage" />
+        <activity android:name=".View.CustomerDetailsActivity" />
+        <activity android:name=".View.CustomerListPage" />
         <activity android:name=".View.MainActivity" />
     </application>
 

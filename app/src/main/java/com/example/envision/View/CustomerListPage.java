@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.envision.Adapter.ListPageRecyclerView;
+import com.example.envision.Adapter.CustomerListRecyclerView;
 import com.example.envision.R;
 import com.example.envision.interfaces.ApiResponseListener;
 import com.example.envision.loandefaulter.constants.ApiConstants;
@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ListPage extends AppCompatActivity {
+public class CustomerListPage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
@@ -29,16 +29,8 @@ public class ListPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_page);
-        //initList();
         initRecyclerView();
     }
-
-//    public void initList(){
-//        list = new ArrayList<>();
-//        for(int i= 300;i<310;i++){
-//            list.add("Name  "+  i);
-//        }
-//    }
 
     public void initRecyclerView(){
         recyclerView = findViewById(R.id.listpage_recyclerview);
@@ -46,7 +38,6 @@ public class ListPage extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
-        //recyclerView.setAdapter(new ListPageRecyclerView(this,list));
         try {
             TDApiService apiService = new TDApiService();
             JSONObject params=new JSONObject();
@@ -74,17 +65,17 @@ public class ListPage extends AppCompatActivity {
                             JSONObject response = data.getJSONObject("result");
                             if(response != null) {
                                 final ArrayList<Customer> customers = getCustomers(response);
-                                recyclerView.setAdapter(new ListPageRecyclerView(ListPage.this, customers));
+                                recyclerView.setAdapter(new CustomerListRecyclerView(CustomerListPage.this, customers));
                             }
                         }else{
-                            RequestQueueService.showAlert("Error! No data fetched", ListPage.this);
+                            RequestQueueService.showAlert("Error! No data fetched", CustomerListPage.this);
                         }
                     }
                 } else {
-                    RequestQueueService.showAlert("Error! No data fetched", ListPage.this);
+                    RequestQueueService.showAlert("Error! No data fetched", CustomerListPage.this);
                 }
             }catch (Exception e){
-                RequestQueueService.showAlert("Something went wrong", ListPage.this);
+                RequestQueueService.showAlert("Something went wrong", CustomerListPage.this);
                 e.printStackTrace();
             }
         }
@@ -92,12 +83,12 @@ public class ListPage extends AppCompatActivity {
         @Override
         public void onFetchFailure(String msg) {
             RequestQueueService.cancelProgressDialog();
-            RequestQueueService.showAlert(msg,ListPage.this);
+            RequestQueueService.showAlert(msg, CustomerListPage.this);
         }
 
         @Override
         public void onFetchStart() {
-            RequestQueueService.showProgressDialog(ListPage.this);
+            RequestQueueService.showProgressDialog(CustomerListPage.this);
         }
     };
 
