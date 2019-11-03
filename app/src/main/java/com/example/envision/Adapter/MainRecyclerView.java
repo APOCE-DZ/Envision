@@ -1,11 +1,16 @@
-package com.example.envision;
+package com.example.envision.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.envision.R;
+import com.example.envision.View.ListPage;
+
 import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -60,6 +65,7 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
 
             if(v == cardView){
                 Toast.makeText(invokingActivity, "" + v.getId(), Toast.LENGTH_SHORT).show();
+                invokingActivity.startActivity(new Intent(invokingActivity.getApplicationContext(), ListPage.class));
             }
         }
     }
