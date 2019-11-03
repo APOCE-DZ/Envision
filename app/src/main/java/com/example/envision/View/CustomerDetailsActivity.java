@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.envision.Adapter.CustomerDetailRecyclerView;
-import com.example.envision.BankruptPredictorActivity;
 import com.example.envision.R;
 import com.example.envision.interfaces.ApiResponseListener;
 import com.example.envision.loandefaulter.constants.ApiConstants;
@@ -45,13 +44,6 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         initRecyclerView();
     }
 
-    @Override
-    public void onClick(View v) {
-        if( v == cardView){
-            startActivity(new Intent(CustomerDetailsActivity.this, BankruptPredictorActivity.class));
-        }
-    }
-
     public void initTextView() {
         name = findViewById(R.id.activity_person_detal_name_tv);
         name.setText(customer.getFirstName()+" "+customer.getLastName());
@@ -66,12 +58,12 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
     }
 
     public void initRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.activity_person_detail_recyclerview);
+        recyclerView = findViewById(R.id.activity_person_detail_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         try {
-            TDApiService apiService = new TDApiService();
+            final TDApiService apiService = new TDApiService();
             apiService.getRequest(this, apiResponseListener, String.format(ApiConstants.TD_FETCH_CUSTOMER, customer.getCustomerId()));
         } catch (Exception e){
             e.printStackTrace();
@@ -160,6 +152,13 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
             e.printStackTrace();
         }
         return accounts;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if( v == cardView){
+
+        }
     }
 
 }
