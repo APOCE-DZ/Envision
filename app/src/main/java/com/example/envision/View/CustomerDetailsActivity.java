@@ -39,10 +39,11 @@ import java.util.HashMap;
 public class CustomerDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CardView cardView;
-    private TextView name, age, school, work, income,accountId;
+    private TextView name, age, school, work, income,accountId,gender;
     private Customer customer;
     private Account creditAccount;
     private RecyclerView recyclerView;
+    private de.hdodenhof.circleimageview.CircleImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +59,31 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         name = findViewById(R.id.activity_person_detal_name_tv);
         name.setText(customer.getFirstName()+" "+customer.getLastName());
         age = findViewById(R.id.activity_person_detail_age_tv);
-        age.setText(customer.getAge());
+        age.setText(String.valueOf(customer.getAge()));
+        gender = findViewById(R.id.activity_person_detail_gender_tv);
+        gender.setText(customer.getGender());
         school = findViewById(R.id.activity_person_detail_school_tv);
+        school.setText("-NA-");
         work =  findViewById(R.id.activity_person_detail_work_tv);
+        if(customer.getWorkType()!=null && !customer.getWorkType().isEmpty()){
+            work.setText(customer.getWorkType());
+        } else {
+            work.setText("-NA-");
+        }
+        work.setText(customer.getWorkType()!=null ? customer.getWorkType().toUpperCase():"-NA-");
         income = findViewById(R.id.activity_person_detail_income_tv);
+        income.setText(String.valueOf(customer.getTotalIncome()));
         accountId = findViewById(R.id.activity_person_detail_account_id);
+        accountId.setText(customer.getCustomerId());
         cardView = findViewById(R.id.activity_person_detail_predict_cardview);
         cardView.setOnClickListener(this);
+        imageView = findViewById(R.id.profile_image);
+
+        if(customer.getGender().equalsIgnoreCase("Male"))
+            imageView.setImageResource(R.drawable.male);
+        else
+            imageView.setImageResource(R.drawable.female);
+
     }
 
     public void initRecyclerView() {
@@ -74,7 +93,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         try {
             final TDApiService apiService = new TDApiService();
-            apiService.getRequest(this, apiAccountResponseListener, String.format(ApiConstants.TD_FETCH_CUSTOMER, customer.getCustomerId()));
+            apiService.getRequest(this, apiAccountResponseListener, String.format(ApiConstants.TD_FETCH_CUSTOMER_ACCOUNTS, customer.getCustomerId()));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -232,7 +251,9 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
                 transaction.setType(transactionObject.getString("type"));
                 transaction.setAmount(transactionObject.getDouble("currencyAmount"));
                 transaction.setSource(transactionObject.getString("source"));
-                transaction.setMerchantId(transactionObject.getString("merchantId"));
+                if(transactionObject.has("merchantId")){
+                    transaction.setMerchantId(transactionObject.getString("merchantId"));
+                }
                 transaction.setDateTime(transactionObject.getString("originationDateTime"));
                 transaction.setTag(transactionObject.getJSONArray("categoryTags").getString(0));
                 transaction.setDescription(transactionObject.getString("description"));
@@ -286,7 +307,7 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
                 payment.setBillAmount(currentBillAmount);
                 payment.setPaymentDate(lastDate);
                 payment.setDelay(0);
-                if(!flag){
+                if(!flag && payments.size() > 0){
                     int lastIndex = payments.size() - 1;
                     int diff = getDateDiffInMonths(payments.get(lastIndex).getPaymentDate(), payment.getPaymentDate());
                     payments.get(lastIndex).setDelay(diff <= 0 ? 0 : diff - 1);
@@ -304,9 +325,9 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
 
     private int getDateDiffInMonths(String fromDate, String toDate) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-            Date date1 = sdf.parse(fromDate);
-            Date date2 = sdf.parse(toDate);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = sdf.parse(fromDate.split("T")[0]);
+            Date date2 = sdf.parse(toDate.split("T")[0]);
             long diff = date1.getTime() - date2.getTime();
             long diffDays = diff / (24 * 60 * 60 * 1000);
             int diffMonths = 0;
@@ -341,9 +362,9 @@ public class CustomerDetailsActivity extends AppCompatActivity implements View.O
         boolean returnValue = knnAlgorithm.getPrediction(inputData,1);
         String result;
         if(returnValue)
-            result = "The person is likely to be a loan defaulter";
-        else
             result = "The person is not likely to be a loan defaulter";
+        else
+            result = "The person is likely to be a loan defaulter";
         new AlertDialog.Builder(CustomerDetailsActivity.this)
                 .setTitle("Result")
                 .setMessage(result)

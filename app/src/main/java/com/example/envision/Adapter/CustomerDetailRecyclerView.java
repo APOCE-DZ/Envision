@@ -23,6 +23,7 @@ public class CustomerDetailRecyclerView extends RecyclerView.Adapter<CustomerDet
 
     public CustomerDetailRecyclerView(Context context, Customer customer){
         this.context = context;
+        this.accounts = new ArrayList<>();
         this.accounts.addAll(customer.getAccounts().get("bankAccounts"));
         this.accounts.addAll(customer.getAccounts().get("creditCardAccounts"));
     }

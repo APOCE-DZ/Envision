@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.envision.View.BankruptPredictorActivity;
@@ -48,13 +49,18 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-        if(position == 0)
-            holder.imageView.setImageResource(R.drawable.money);
-        if(position == 1)
+        if(position == 0) {
+            holder.imageView.setImageResource(R.drawable.defaulter);
+            holder.textView.setText("Defaulter Predictions");
+        }
+        if(position == 1) {
             holder.imageView.setImageResource(R.drawable.cancer);
-        if (position == 2)
-            holder.imageView.setImageResource(R.drawable.loan);
-
+            holder.textView.setText("Cancer Predictions");
+        }
+        if (position == 2) {
+            holder.imageView.setImageResource(R.drawable.bankrypt);
+            holder.textView.setText("Bankruptcy Predictions");
+        }
     }
 
     @Override
@@ -68,6 +74,7 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
         private CardView cardView;
         private ImageView imageView;
         private View layoutView;
+        private TextView textView;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +82,7 @@ public class MainRecyclerView extends RecyclerView.Adapter<MainRecyclerView.Card
             cardView = itemView.findViewById(R.id.main_screen_cardview);
             imageView = itemView.findViewById(R.id.main_screen_imageview);
             cardView.setOnClickListener(this);
+            textView = itemView.findViewById(R.id.textView_main_recyclerview);
         }
 
         @Override

@@ -100,9 +100,9 @@ public class Transaction implements Serializable, Comparable<Transaction> {
 
     public int compareTo(Transaction transaction) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-            Date date1 = sdf.parse(this.dateTime);
-            Date date2 = sdf.parse(transaction.getDateTime());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = sdf.parse(this.dateTime.split("T")[0]);
+            Date date2 = sdf.parse(transaction.getDateTime().split("T")[0]);
             return date1.compareTo(date2);
         } catch (ParseException e){
             System.out.println("Error while comparing dates...");

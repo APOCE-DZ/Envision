@@ -39,7 +39,7 @@ public class CustomerListRecyclerView extends RecyclerView.Adapter<CustomerListR
     @Override
     public void onBindViewHolder(@NonNull CustomerListViewHolder holder, int position) {
         holder.textView.setText(customers.get(position).getFirstName()+" "+customers.get(position).getLastName());
-        if(position % 2 == 0)
+        if(customers.get(position).getGender().equalsIgnoreCase("Male"))
             holder.imageView.setImageResource(R.drawable.male);
         else
             holder.imageView.setImageResource(R.drawable.female);

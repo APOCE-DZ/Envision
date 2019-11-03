@@ -39,7 +39,7 @@ public class PatientListRecyclerView extends RecyclerView.Adapter<PatientListRec
     @Override
     public void onBindViewHolder(@NonNull ListPageViewHolder holder, int position) {
         holder.textView.setText(patients.get(position).getName());
-        holder.imageView.setImageResource(R.drawable.male);
+        holder.imageView.setImageResource(R.drawable.female);
 
     }
 

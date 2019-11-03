@@ -107,7 +107,7 @@ public class CustomerListPage extends AppCompatActivity {
                 customer.setGender(customerObject.getString("gender"));
                 customer.setBirthDate(customerObject.getString("birthDate"));
                 customer.setRelationshipStatus(customerObject.getString("relationshipStatus"));
-                customer.setGender(customerObject.has("workActivity") ? customerObject.getString("workActivity") : "");
+                customer.setWorkType(customerObject.has("workActivity") ? customerObject.getString("workActivity") : "");
 
                 StringBuilder address = new StringBuilder();
                 final JSONObject principalResidence = customerObject.getJSONObject("addresses").getJSONObject("principalResidence");
